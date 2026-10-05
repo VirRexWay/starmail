@@ -1,0 +1,261 @@
+/* ==========================================================================
+   Universes
+   styles.css is the Starship universe. Each universe below re-tokens the
+   palette and reshapes panels, buttons and ornaments. Selected by
+   body[data-universe], which theme.ts sets.
+   ========================================================================== */
+
+.hud-panel__label > span:nth-child(2) { text-transform: uppercase; }
+.hud-panel__accent, .nav-item__accent, .composer__accent {
+  font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  font-size: 11px; letter-spacing: 0.2em; color: var(--secondary); opacity: 0.85; flex-shrink: 0;
+}
+.composer__accent { margin-left: 10px; }
+.nav-item__accent { position: relative; z-index: 1; }
+
+/* ---------------------------------------------------------------- universe picker */
+
+.universe-select select {
+  width: 100%; height: 42px; padding: 0 12px; outline: 0; cursor: pointer;
+  font-family: var(--font-display); font-size: 14px; letter-spacing: 0.06em; color: var(--text);
+  background: rgba(var(--primary-rgb), 0.06); border: 1px solid var(--line-strong);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.universe-select select:focus { border-color: var(--primary); box-shadow: var(--glow-sm); }
+.universe-select optgroup { font-style: normal; color: var(--faint); }
+.universe-select option { color: var(--text); background: var(--panel-solid); }
+.universe-select__tagline { margin: 8px 2px 4px; font-size: 12.5px; line-height: 1.5; color: var(--dim); }
+
+/* ======================================================================
+   FRONTIER: riveted, sun-worn metal on a working ship
+   ====================================================================== */
+
+body[data-universe='frontier'] {
+  --bg: #07060a;
+  --panel: rgba(24, 18, 13, 0.74);
+  --panel-solid: rgba(26, 19, 14, 0.96);
+  --line: rgba(var(--primary-rgb), 0.22);
+  --line-strong: rgba(var(--primary-rgb), 0.55);
+  --text: #eadfcc;
+  --dim: rgba(228, 208, 178, 0.62);
+  --faint: rgba(228, 208, 178, 0.36);
+  --glow-sm: 0 0 calc(5px * var(--glow)) rgba(var(--primary-rgb), calc(0.35 * var(--glow)));
+  --glow-md: 0 0 calc(14px * var(--glow)) rgba(var(--primary-rgb), calc(0.25 * var(--glow)));
+}
+[data-universe='frontier'] .hud-panel,
+[data-universe='frontier'] .account,
+[data-universe='frontier'] .nav-item--all {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 240, 220, 0.014) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, rgba(255, 230, 200, 0.04), transparent 30%);
+  background-color: var(--panel);
+}
+[data-universe='frontier'] .hud-panel::after {
+  /* hazard-stripe trim along the top edge */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; pointer-events: none;
+  background: repeating-linear-gradient(-45deg, rgba(var(--primary-rgb), 0.55) 0 7px, transparent 7px 14px);
+}
+[data-universe='frontier'] .corner {
+  /* rivets */
+  width: 7px; height: 7px; border: 0; border-radius: 50%; filter: none;
+  background: radial-gradient(circle at 35% 35%, #d8c8b0, #5b4a3a 60%, #2a2018);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
+}
+[data-universe='frontier'] .corner.tl { top: 8px; left: 8px; }
+[data-universe='frontier'] .corner.tr { top: 8px; right: 8px; height: 7px; }
+[data-universe='frontier'] .corner.bl { bottom: 8px; left: 8px; height: 7px; }
+[data-universe='frontier'] .corner.br { bottom: 8px; right: 8px; }
+[data-universe='frontier'] .hud-panel__label { padding-left: 24px; font-size: 12px; letter-spacing: 0.18em; text-shadow: none; }
+[data-universe='frontier'] .hud-panel__tick { transform: none; width: 10px; height: 4px; box-shadow: none; }
+[data-universe='frontier'] .btn,
+[data-universe='frontier'] .search { clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px); }
+[data-universe='frontier'] .btn--primary {
+  background: linear-gradient(180deg, var(--primary), color-mix(in srgb, var(--primary) 70%, #3a2410));
+  color: #1c1006; box-shadow: none;
+}
+[data-universe='frontier'] .brand__name { letter-spacing: 0.22em; text-shadow: 0 0 10px rgba(var(--primary-rgb), 0.35); }
+[data-universe='frontier'] .brand__logo { border-radius: 4px; transform: rotate(45deg) scale(0.85); }
+[data-universe='frontier'] .brand__logo span {
+  transform: rotate(-45deg); width: 16px; height: 16px;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+}
+[data-universe='frontier'] .brand__logo::after { border-radius: 4px; border-style: solid; border-color: rgba(var(--primary-rgb), 0.3); animation: none; }
+[data-universe='frontier'] .avatar { clip-path: none; border-radius: 4px; }
+[data-universe='frontier'] .reader__subject { letter-spacing: 0.06em; }
+[data-universe='frontier'] .reader__frame { clip-path: none; border-radius: 2px; }
+[data-universe='frontier'] .boot__ring { border-radius: 10px; transform: rotate(45deg); }
+[data-universe='frontier'] .boot__title { font-size: 52px; }
+[data-universe='frontier'] .toast { border-left-width: 4px; }
+
+/* ======================================================================
+   ELVEN REALM: rounded, gilded, calm
+   ====================================================================== */
+
+body[data-universe='elven'] {
+  --bg: #04060f;
+  --panel: rgba(10, 18, 36, 0.7);
+  --panel-solid: rgba(10, 17, 33, 0.95);
+  --line: rgba(var(--primary-rgb), 0.2);
+  --line-strong: rgba(var(--primary-rgb), 0.48);
+  --text: #ece7d8;
+  --dim: rgba(228, 222, 204, 0.64);
+  --faint: rgba(228, 222, 204, 0.38);
+  --glow-sm: 0 0 calc(8px * var(--glow)) rgba(var(--primary-rgb), calc(0.3 * var(--glow)));
+  --glow-md: 0 0 calc(22px * var(--glow)) rgba(var(--primary-rgb), calc(0.22 * var(--glow)));
+  font-size: 15px;
+}
+[data-universe='elven'] .hud-panel {
+  clip-path: none; border-radius: 18px;
+  box-shadow: inset 0 0 40px rgba(var(--primary-rgb), 0.04), 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+[data-universe='elven'] .hud-panel::before {
+  /* inner filigree line */
+  opacity: 1; inset: 5px; border-radius: 14px; background: none;
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+}
+[data-universe='elven'] .corner {
+  border: 0; width: 9px; height: 9px; background: var(--primary); transform: rotate(45deg);
+  filter: drop-shadow(0 0 6px rgba(var(--primary-rgb), 0.7));
+}
+[data-universe='elven'] .corner.tl { top: -5px; left: calc(50% - 4.5px); }
+[data-universe='elven'] .corner.br { bottom: -5px; right: calc(50% - 4.5px); }
+[data-universe='elven'] .corner.tr,
+[data-universe='elven'] .corner.bl { display: none; }
+[data-universe='elven'] .hud-panel__label { justify-content: center; padding: 16px 22px 10px; font-size: 13px; letter-spacing: 0.16em; }
+[data-universe='elven'] .hud-panel__label > span:nth-child(2) { text-transform: none; }
+[data-universe='elven'] .hud-panel__tick { width: 5px; height: 5px; }
+[data-universe='elven'] .hud-panel__rule { flex: 0 1 60px; background: linear-gradient(90deg, transparent, var(--line-strong)); }
+[data-universe='elven'] .account,
+[data-universe='elven'] .nav-item--all { border-radius: 16px; clip-path: none; overflow: hidden; }
+[data-universe='elven'] .account::before { width: 3px; border-radius: 3px; }
+[data-universe='elven'] .nav-item--all,
+[data-universe='elven'] .nav-add,
+[data-universe='elven'] .tool,
+[data-universe='elven'] .account__label,
+[data-universe='elven'] .drawer h3,
+[data-universe='elven'] .list__more { text-transform: none; letter-spacing: 0.08em; }
+[data-universe='elven'] .nav-add { border-radius: 16px; }
+[data-universe='elven'] .nav-item__glow { border-left: 0; border-radius: 10px; }
+[data-universe='elven'] .btn,
+[data-universe='elven'] .search,
+[data-universe='elven'] .badge { clip-path: none; border-radius: 999px; }
+[data-universe='elven'] .btn { letter-spacing: 0.1em; }
+[data-universe='elven'] .btn--primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 90%, #fff), color-mix(in srgb, var(--primary) 75%, #6a5520));
+  color: #14100a; box-shadow: 0 0 18px -4px rgba(var(--primary-rgb), 0.7);
+}
+[data-universe='elven'] .icon-btn,
+[data-universe='elven'] .tool,
+[data-universe='elven'] .chip,
+[data-universe='elven'] .bodybar__btn { border-radius: 999px; }
+[data-universe='elven'] .row { border-radius: 12px; border-bottom-color: transparent; margin-bottom: 2px; }
+[data-universe='elven'] .row.is-selected::before { border-radius: 12px; }
+[data-universe='elven'] .avatar { clip-path: none; border-radius: 50%; }
+[data-universe='elven'] .reader__subject { font-size: 23px; text-shadow: 0 0 22px rgba(var(--primary-rgb), 0.25); }
+[data-universe='elven'] .reader__text { font-size: 17px; line-height: 1.75; border-radius: 14px; }
+[data-universe='elven'] .reader__frame { clip-path: none; border-radius: 14px; }
+[data-universe='elven'] .brand__name { letter-spacing: 0.12em; font-size: 16px; font-weight: 600; }
+[data-universe='elven'] .brand__logo span {
+  width: 16px; height: 16px;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+[data-universe='elven'] .composer,
+[data-universe='elven'] .modal,
+[data-universe='elven'] .toast { border-radius: 18px; clip-path: none; }
+[data-universe='elven'] .drawer { clip-path: none; border-radius: 22px 0 0 22px; }
+[data-universe='elven'] .provider,
+[data-universe='elven'] .universe-select select,
+[data-universe='elven'] .preset,
+[data-universe='elven'] .tf input,
+[data-universe='elven'] .text-in,
+[data-universe='elven'] .seg { clip-path: none; border-radius: 12px; }
+[data-universe='elven'] .seg { overflow: hidden; }
+[data-universe='elven'] .stardate__value { font-size: 13px; }
+[data-universe='elven'] .boot__title { font-size: 46px; font-weight: 400; }
+[data-universe='elven'] .boot__log { font-family: var(--font-body); font-style: italic; font-size: 15px; text-align: center; white-space: normal; }
+[data-universe='elven'] .boot__chev { display: none; }
+[data-universe='elven'] .boot__ring { border-width: 1px; }
+
+/* ======================================================================
+   SHADOW REALM: jagged iron, firelight
+   ====================================================================== */
+
+body[data-universe='shadow'] {
+  --bg: #050203;
+  --panel: rgba(20, 7, 6, 0.72);
+  --panel-solid: rgba(18, 6, 6, 0.96);
+  --line: rgba(var(--primary-rgb), 0.24);
+  --line-strong: rgba(var(--primary-rgb), 0.55);
+  --text: #ead8cd;
+  --dim: rgba(222, 192, 176, 0.6);
+  --faint: rgba(222, 192, 176, 0.34);
+  --glow-sm: 0 0 calc(8px * var(--glow)) rgba(var(--primary-rgb), calc(0.5 * var(--glow)));
+  --glow-md: 0 0 calc(20px * var(--glow)) rgba(var(--primary-rgb), calc(0.35 * var(--glow)));
+}
+[data-universe='shadow'] .hud-panel,
+[data-universe='shadow'] .composer,
+[data-universe='shadow'] .modal {
+  clip-path: polygon(0 12px, 12px 0, 28% 0, calc(28% + 8px) 6px, 72% 6px, calc(72% + 8px) 0, calc(100% - 12px) 0, 100% 12px,
+    100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
+  background-image:
+    linear-gradient(0deg, rgba(var(--primary-rgb), 0.07), transparent 35%),
+    radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: auto, 5px 5px;
+  background-color: var(--panel);
+}
+[data-universe='shadow'] .composer,
+[data-universe='shadow'] .modal { background-color: var(--panel-solid); }
+[data-universe='shadow'] .corner {
+  /* iron spikes */
+  border: 0; width: 14px; height: 14px; background: var(--primary);
+  filter: drop-shadow(0 0 5px rgba(var(--primary-rgb), 0.8));
+  clip-path: polygon(0 0, 100% 35%, 35% 100%);
+}
+[data-universe='shadow'] .corner.tl { top: 2px; left: 2px; }
+[data-universe='shadow'] .corner.tr { top: 2px; right: 2px; height: 14px; transform: scaleX(-1); }
+[data-universe='shadow'] .corner.bl { bottom: 2px; left: 2px; height: 14px; transform: scaleY(-1); }
+[data-universe='shadow'] .corner.br { bottom: 2px; right: 2px; transform: scale(-1, -1); }
+[data-universe='shadow'] .hud-panel__label { padding: 14px 22px 10px 22px; font-size: 16px; letter-spacing: 0.08em; text-shadow: 0 0 10px rgba(var(--primary-rgb), 0.8); }
+[data-universe='shadow'] .hud-panel__label > span:nth-child(2) { text-transform: none; }
+[data-universe='shadow'] .nav-item--all,
+[data-universe='shadow'] .nav-add,
+[data-universe='shadow'] .tool,
+[data-universe='shadow'] .btn,
+[data-universe='shadow'] .account__label,
+[data-universe='shadow'] .drawer h3,
+[data-universe='shadow'] .list__more,
+[data-universe='shadow'] .composer__title,
+[data-universe='shadow'] .reader__idle-title,
+[data-universe='shadow'] .list__empty p { text-transform: none; letter-spacing: 0.06em; }
+[data-universe='shadow'] .nav-item--all,
+[data-universe='shadow'] .composer__title,
+[data-universe='shadow'] .drawer h3 { font-size: 15px; }
+[data-universe='shadow'] .tool { font-size: 12px; }
+[data-universe='shadow'] .btn { font-size: 14px; }
+[data-universe='shadow'] .btn--primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 85%, #ffd27a), color-mix(in srgb, var(--primary) 70%, #2a0402));
+  color: #1a0402;
+}
+[data-universe='shadow'] .brand__name { font-size: 20px; letter-spacing: 0.06em; font-weight: 400; text-shadow: 0 0 14px rgba(var(--primary-rgb), 0.9), 0 0 2px #000; }
+[data-universe='shadow'] .brand__logo { border-radius: 0; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+[data-universe='shadow'] .brand__logo span { clip-path: polygon(50% 0, 70% 60%, 50% 100%, 30% 60%); width: 10px; height: 18px; }
+[data-universe='shadow'] .brand__logo::after { display: none; }
+[data-universe='shadow'] .avatar { clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%); }
+[data-universe='shadow'] .reader__subject { font-size: 26px; letter-spacing: 0.04em; text-shadow: 0 0 18px rgba(var(--primary-rgb), 0.45); }
+[data-universe='shadow'] .reader__frame { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); }
+[data-universe='shadow'] .row.is-unread .row__stripe { animation-duration: 1.1s; }
+[data-universe='shadow'] .boot__title { font-size: 56px; }
+[data-universe='shadow'] .boot__ring {
+  border-color: var(--primary);
+  box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.8), inset 0 0 30px rgba(var(--primary-rgb), 0.6);
+  animation: forge 1.2s ease-in-out infinite alternate;
+}
+[data-universe='shadow'] .boot__log { font-family: var(--font-display); font-size: 17px; letter-spacing: 0.08em; color: var(--text); }
+@keyframes forge { from { filter: brightness(0.85); } to { filter: brightness(1.25); } }
+[data-universe='shadow'] .toast { border-left-color: var(--primary); }
+[data-universe='shadow'] .badge { clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%); }
+
+/* Boot subtitles in each universe's own voice */
+[data-universe='elven'] .boot__ship { font-family: var(--font-body); font-style: italic; font-size: 15px; letter-spacing: 0.12em; }
+[data-universe='shadow'] .boot__ship { font-family: var(--font-display); font-size: 17px; letter-spacing: 0.1em; }

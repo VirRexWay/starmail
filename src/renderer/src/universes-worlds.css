@@ -1,0 +1,305 @@
+/* ==========================================================================
+   Universes: Steampunk Telegraph, Noir, High Seas, Zen Garden, Eldritch
+   (see universes.css for the shared mechanics)
+   ========================================================================== */
+
+/* Light universes: lighter overlays and readable dropdowns */
+body[data-light='true'] .vignette { opacity: 0.2; }
+body[data-light='true'] select option { background: #f4f1ea; color: #222; }
+body[data-light='true'] .modal-backdrop,
+body[data-light='true'] .drawer-backdrop { background: rgba(240, 236, 228, 0.55); }
+
+/* ======================================================================
+   STEAMPUNK TELEGRAPH: brass frames, bolts and leather
+   ====================================================================== */
+
+body[data-universe='steampunk'] {
+  --bg: #120c06;
+  --panel: rgba(30, 20, 11, 0.84);
+  --panel-solid: rgba(30, 20, 11, 0.97);
+  --line: rgba(var(--primary-rgb), 0.3);
+  --line-strong: rgba(var(--primary-rgb), 0.65);
+  --text: #f1e4c8;
+  --dim: rgba(236, 220, 186, 0.66);
+  --faint: rgba(236, 220, 186, 0.4);
+  --glow-sm: 0 0 calc(4px * var(--glow)) rgba(var(--primary-rgb), 0.3);
+  --glow-md: 0 0 calc(12px * var(--glow)) rgba(var(--primary-rgb), 0.2);
+}
+[data-universe='steampunk'] .hud-panel,
+[data-universe='steampunk'] .composer,
+[data-universe='steampunk'] .modal {
+  clip-path: none; border-radius: 10px; border: 2px solid rgba(var(--primary-rgb), 0.6);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 2px 14px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+[data-universe='steampunk'] .hud-panel::before { opacity: 1; inset: 5px; border-radius: 6px; background: none; border: 1px solid rgba(var(--primary-rgb), 0.22); }
+[data-universe='steampunk'] .account, [data-universe='steampunk'] .nav-item--all { clip-path: none; border-radius: 8px; border: 1px solid rgba(var(--primary-rgb), 0.4); }
+[data-universe='steampunk'] .corner {
+  /* slotted brass bolts */
+  width: 10px; height: 10px; border: 0; border-radius: 50%; filter: none;
+  background: linear-gradient(45deg, transparent 44%, rgba(40, 24, 8, 0.85) 45% 55%, transparent 56%), radial-gradient(circle at 35% 35%, #f6dc9a, #a57a2c 60%, #5a3e14);
+}
+[data-universe='steampunk'] .corner.tl { top: 7px; left: 7px; }
+[data-universe='steampunk'] .corner.tr { top: 7px; right: 7px; height: 10px; }
+[data-universe='steampunk'] .corner.bl { bottom: 7px; left: 7px; height: 10px; }
+[data-universe='steampunk'] .corner.br { bottom: 7px; right: 7px; }
+[data-universe='steampunk'] .hud-panel__label { padding-left: 26px; font-size: 15px; letter-spacing: 0.06em; text-shadow: none; }
+[data-universe='steampunk'] .hud-panel__label > span:nth-child(2) { text-transform: none; }
+[data-universe='steampunk'] .hud-panel__tick { border-radius: 50%; transform: none; }
+[data-universe='steampunk'] .btn, [data-universe='steampunk'] .search { clip-path: none; border-radius: 6px; }
+[data-universe='steampunk'] .btn { text-transform: none; letter-spacing: 0.05em; font-size: 13px; }
+[data-universe='steampunk'] .btn--primary { background: linear-gradient(180deg, #f2d48a, var(--primary) 45%, #7a5420); color: #2a1a08; border: 1px solid #5a3e14; box-shadow: inset 0 1px rgba(255, 255, 255, 0.5); }
+[data-universe='steampunk'] .icon-btn, [data-universe='steampunk'] .tool, [data-universe='steampunk'] .chip { border-radius: 5px; }
+[data-universe='steampunk'] .tool, [data-universe='steampunk'] .nav-add, [data-universe='steampunk'] .nav-item--all, [data-universe='steampunk'] .composer__title, [data-universe='steampunk'] .drawer h3, [data-universe='steampunk'] .list__more, [data-universe='steampunk'] .reader__idle-title, [data-universe='steampunk'] .list__empty p { text-transform: none; letter-spacing: 0.05em; }
+[data-universe='steampunk'] .brand__logo { border-radius: 50%; }
+[data-universe='steampunk'] .brand__logo span { width: 2px; height: 14px; clip-path: none; background: var(--primary); transform-origin: 50% 100%; transform: translateY(-7px) rotate(40deg); }
+[data-universe='steampunk'] .brand__logo::after { border-style: dotted; animation-duration: 40s; }
+[data-universe='steampunk'] .brand__name { letter-spacing: 0.04em; font-size: 17px; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8); }
+[data-universe='steampunk'] .avatar { clip-path: none; border-radius: 50%; border-width: 2px; }
+[data-universe='steampunk'] .reader__frame { clip-path: none; border-radius: 6px; }
+[data-universe='steampunk'] .reader__subject { letter-spacing: 0.03em; font-size: 23px; }
+[data-universe='steampunk'] .drawer { clip-path: none; border-left: 3px solid rgba(var(--primary-rgb), 0.6); }
+[data-universe='steampunk'] .badge { clip-path: none; border-radius: 999px; color: #2a1a08; }
+[data-universe='steampunk'] .boot__title { font-size: 42px; letter-spacing: 0.06em !important; }
+[data-universe='steampunk'] .boot__ring-inner { border-style: dotted; }
+
+/* ======================================================================
+   NOIR: case files in black and white, film grain
+   ====================================================================== */
+
+body[data-universe='noir'] {
+  --bg: #0a0a0c;
+  --panel: rgba(14, 14, 16, 0.84);
+  --panel-solid: rgba(14, 14, 16, 0.97);
+  --line: rgba(232, 226, 212, 0.16);
+  --line-strong: rgba(232, 226, 212, 0.42);
+  --text: #e8e2d4;
+  --dim: rgba(232, 226, 212, 0.62);
+  --faint: rgba(232, 226, 212, 0.36);
+  --glow-sm: none;
+  --glow-md: none;
+}
+body[data-universe='noir']::after {
+  /* film grain */
+  content: ''; position: fixed; inset: -50%; z-index: 950; pointer-events: none; opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 0.6s steps(3) infinite;
+}
+body[data-universe='noir'][data-anim='off']::after { animation: none; }
+@keyframes grain { 0% { transform: translate(0, 0); } 33% { transform: translate(-3%, 2%); } 66% { transform: translate(2%, -3%); } }
+[data-universe='noir'] .hud-panel,
+[data-universe='noir'] .account,
+[data-universe='noir'] .nav-item--all,
+[data-universe='noir'] .composer,
+[data-universe='noir'] .modal,
+[data-universe='noir'] .drawer { clip-path: none; border-radius: 2px; }
+[data-universe='noir'] .corner { display: none; }
+[data-universe='noir'] .hud-panel__label { color: var(--text); text-shadow: none; font-size: 13px; letter-spacing: 0.14em; }
+[data-universe='noir'] .hud-panel__tick { background: var(--primary); box-shadow: none; }
+[data-universe='noir'] .brand__logo { border-radius: 2px; border-color: var(--text); box-shadow: none; }
+[data-universe='noir'] .brand__logo span { background: var(--text); box-shadow: none; }
+[data-universe='noir'] .brand__logo::after { display: none; }
+[data-universe='noir'] .brand__name { color: var(--text); text-shadow: none; letter-spacing: 0.08em; text-transform: none; font-size: 17px; }
+[data-universe='noir'] .btn, [data-universe='noir'] .search { clip-path: none; border-radius: 2px; }
+[data-universe='noir'] .btn--primary { background: var(--text); color: #111; border-color: var(--text); box-shadow: none; }
+[data-universe='noir'] .tool, [data-universe='noir'] .nav-add, [data-universe='noir'] .nav-item--all, [data-universe='noir'] .composer__title, [data-universe='noir'] .drawer h3, [data-universe='noir'] .list__more { letter-spacing: 0.1em; }
+[data-universe='noir'] .reader__subject { text-shadow: none; letter-spacing: 0.02em; }
+/* The open letter is a typed page in the case file */
+[data-universe='noir'] .reader__text { background: #e8e2d4; color: #1a1a1a; border: 0; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); }
+[data-universe='noir'] .reader__text a { color: #8a1a1a; }
+[data-universe='noir'] .reader__frame { clip-path: none; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); }
+[data-universe='noir'] .avatar { clip-path: none; border-radius: 2px; filter: grayscale(1); }
+[data-universe='noir'] .badge { clip-path: none; border-radius: 2px; background: var(--primary); }
+[data-universe='noir'] .holo__ring { box-shadow: none; }
+[data-universe='noir'] .boot { background: radial-gradient(ellipse at center, rgba(20, 20, 24, 0.7), #000); }
+[data-universe='noir'] .boot__ring { display: none; }
+[data-universe='noir'] .boot__title { color: var(--text); text-shadow: none; font-size: 44px; letter-spacing: 0.08em !important; }
+[data-universe='noir'] .boot__log { font-family: var(--font-display); font-size: 16px; color: var(--text); white-space: normal; text-align: center; width: 600px; }
+[data-universe='noir'] .boot__chev { display: none; }
+
+/* ======================================================================
+   HIGH SEAS: a ship's timbers, rope and brass
+   ====================================================================== */
+
+body[data-universe='seas'] {
+  --bg: #02040c;
+  --panel: rgba(30, 18, 10, 0.84);
+  --panel-solid: rgba(30, 18, 10, 0.97);
+  --line: rgba(var(--primary-rgb), 0.25);
+  --line-strong: rgba(var(--primary-rgb), 0.55);
+  --text: #f0e2c4;
+  --dim: rgba(240, 226, 196, 0.64);
+  --faint: rgba(240, 226, 196, 0.38);
+  --glow-sm: 0 0 calc(5px * var(--glow)) rgba(var(--primary-rgb), 0.35);
+}
+[data-universe='seas'] .hud-panel,
+[data-universe='seas'] .composer,
+[data-universe='seas'] .modal {
+  clip-path: none; border-radius: 8px; border: 2px solid #5a3a1c;
+  background-image: repeating-linear-gradient(90deg, rgba(255, 220, 170, 0.025) 0 2px, transparent 2px 11px, rgba(0, 0, 0, 0.08) 11px 12px, transparent 12px 23px);
+  background-color: var(--panel);
+}
+[data-universe='seas'] .hud-panel::after {
+  /* rope along the top */
+  content: ''; position: absolute; left: 10px; right: 10px; top: 2px; height: 5px; border-radius: 3px; pointer-events: none;
+  background: repeating-linear-gradient(60deg, #9a7a44 0 4px, #5e4422 4px 8px);
+}
+[data-universe='seas'] .account, [data-universe='seas'] .nav-item--all { clip-path: none; border-radius: 8px; border: 2px solid #5a3a1c; }
+[data-universe='seas'] .corner { width: 9px; height: 9px; border: 0; border-radius: 50%; filter: none; background: radial-gradient(circle at 35% 35%, #ffe7a8, #b8862c 60%, #5a3e14); }
+[data-universe='seas'] .corner.tl { top: 10px; left: 8px; }
+[data-universe='seas'] .corner.tr { top: 10px; right: 8px; height: 9px; }
+[data-universe='seas'] .corner.bl { bottom: 8px; left: 8px; height: 9px; }
+[data-universe='seas'] .corner.br { bottom: 8px; right: 8px; }
+[data-universe='seas'] .hud-panel__label { padding: 14px 24px 8px; font-size: 21px; letter-spacing: 0.04em; text-shadow: 0 2px 0 rgba(0, 0, 0, 0.6); }
+[data-universe='seas'] .hud-panel__label > span:nth-child(2) { text-transform: none; }
+[data-universe='seas'] .hud-panel__tick { display: none; }
+[data-universe='seas'] .brand__name { font-size: 24px; letter-spacing: 0.04em; text-transform: none; }
+[data-universe='seas'] .brand__logo { border-radius: 50%; border-style: double; border-width: 4px; }
+[data-universe='seas'] .btn, [data-universe='seas'] .search { clip-path: none; border-radius: 6px; }
+[data-universe='seas'] .btn { text-transform: none; font-size: 16px; letter-spacing: 0.04em; }
+[data-universe='seas'] .btn--primary { background: linear-gradient(180deg, #ffe7a8, var(--primary) 50%, #8a6020); color: #2a1606; box-shadow: none; }
+[data-universe='seas'] .tool, [data-universe='seas'] .nav-add, [data-universe='seas'] .nav-item--all, [data-universe='seas'] .composer__title, [data-universe='seas'] .drawer h3, [data-universe='seas'] .list__more, [data-universe='seas'] .reader__idle-title, [data-universe='seas'] .list__empty p { text-transform: none; letter-spacing: 0.04em; }
+[data-universe='seas'] .composer__title, [data-universe='seas'] .drawer h3 { font-size: 19px; }
+[data-universe='seas'] .reader__subject { font-size: 30px; letter-spacing: 0.03em; }
+[data-universe='seas'] .avatar { clip-path: none; border-radius: 50%; border-width: 2px; background: radial-gradient(circle at 35% 35%, rgba(255, 230, 160, 0.35), rgba(120, 80, 20, 0.3)); }
+[data-universe='seas'] .reader__frame { clip-path: none; border-radius: 6px; }
+[data-universe='seas'] .badge { clip-path: none; border-radius: 999px; color: #2a1606; }
+[data-universe='seas'] .drawer { clip-path: none; border-left: 4px solid #5a3a1c; }
+[data-universe='seas'] .boot__title { font-size: 64px; letter-spacing: 0.06em !important; }
+[data-universe='seas'] .boot__log { font-family: var(--font-display); font-size: 21px; color: var(--text); text-align: center; white-space: normal; }
+[data-universe='seas'] .boot__chev { display: none; }
+
+/* ======================================================================
+   ZEN GARDEN: paper, ink and quiet
+   ====================================================================== */
+
+body[data-universe='zen'] {
+  --bg: #e9e4d8;
+  --panel: rgba(250, 247, 240, 0.8);
+  --panel-solid: rgba(250, 247, 240, 0.97);
+  --line: rgba(42, 38, 32, 0.14);
+  --line-strong: rgba(42, 38, 32, 0.32);
+  --text: #2a2620;
+  --dim: rgba(42, 38, 32, 0.64);
+  --faint: rgba(42, 38, 32, 0.4);
+  --glow-sm: none;
+  --glow-md: none;
+  text-shadow: none;
+}
+[data-universe='zen'] .hud-panel,
+[data-universe='zen'] .account,
+[data-universe='zen'] .nav-item--all,
+[data-universe='zen'] .composer,
+[data-universe='zen'] .modal,
+[data-universe='zen'] .drawer,
+[data-universe='zen'] .toast {
+  clip-path: none; border-radius: 4px; box-shadow: 0 10px 34px rgba(30, 25, 15, 0.14);
+  background-image: repeating-linear-gradient(97deg, rgba(120, 100, 70, 0.018) 0 1px, transparent 1px 6px);
+}
+[data-universe='zen'] .corner { display: none; }
+[data-universe='zen'] .hud-panel__label { color: var(--text); text-shadow: none; font-size: 14px; letter-spacing: 0.24em; }
+[data-universe='zen'] .hud-panel__label > span:nth-child(2) { text-transform: none; }
+[data-universe='zen'] .hud-panel__tick { border-radius: 50%; transform: none; width: 8px; height: 8px; background: var(--alert); box-shadow: none; }
+[data-universe='zen'] .hud-panel__rule { background: linear-gradient(90deg, var(--line-strong), transparent); }
+[data-universe='zen'] .brand__logo { border-color: var(--text); box-shadow: none; border-width: 1.5px; }
+[data-universe='zen'] .brand__logo span { width: 10px; height: 10px; border-radius: 50%; clip-path: none; background: var(--alert); box-shadow: none; }
+[data-universe='zen'] .brand__logo::after { display: none; }
+[data-universe='zen'] .brand__name { color: var(--text); text-shadow: none; letter-spacing: 0.3em; text-transform: none; font-weight: 600; }
+[data-universe='zen'] .btn, [data-universe='zen'] .search { clip-path: none; border-radius: 3px; }
+[data-universe='zen'] .btn { text-transform: none; letter-spacing: 0.12em; color: var(--text); border-color: var(--line-strong); background: transparent; }
+[data-universe='zen'] .btn--primary { background: var(--primary); border-color: var(--primary); color: #f6f2e8; box-shadow: none; font-weight: 600; }
+[data-universe='zen'] .btn--primary:hover:not(:disabled) { filter: brightness(1.1); }
+[data-universe='zen'] .icon-btn { color: var(--text); border-color: var(--line); background: transparent; }
+[data-universe='zen'] .tool, [data-universe='zen'] .nav-add, [data-universe='zen'] .nav-item--all, [data-universe='zen'] .composer__title, [data-universe='zen'] .drawer h3, [data-universe='zen'] .list__more, [data-universe='zen'] .reader__idle-title, [data-universe='zen'] .list__empty p { text-transform: none; letter-spacing: 0.12em; }
+[data-universe='zen'] .tool:hover { color: var(--text); background: rgba(42, 38, 32, 0.05); box-shadow: none; }
+[data-universe='zen'] .nav-item.is-active, [data-universe='zen'] .account .nav-item.is-active { color: var(--text); }
+[data-universe='zen'] .nav-item__glow { background: rgba(42, 38, 32, 0.06); border-left-color: var(--primary); box-shadow: none; }
+[data-universe='zen'] .badge, [data-universe='zen'] .account .badge { clip-path: none; border-radius: 999px; background: var(--primary); color: #f6f2e8; box-shadow: none; }
+[data-universe='zen'] .row.is-selected { background: rgba(42, 38, 32, 0.06); }
+[data-universe='zen'] .row.is-selected::before { border: 0; border-left: 2px solid var(--primary); box-shadow: none; }
+[data-universe='zen'] .row.is-unread .row__stripe { box-shadow: none; animation: none; }
+[data-universe='zen'] .seg button.is-on { background: var(--primary); color: #f6f2e8; box-shadow: none; }
+[data-universe='zen'] .reader__subject { text-shadow: none; letter-spacing: 0.06em; font-weight: 600; }
+[data-universe='zen'] .reader__text { background: rgba(255, 255, 255, 0.5); border-color: var(--line); }
+[data-universe='zen'] .reader__frame { clip-path: none; box-shadow: 0 0 0 1px var(--line); }
+[data-universe='zen'] .avatar { clip-path: none; border-radius: 50%; background: transparent; }
+[data-universe='zen'] .holo__ring { border-color: rgba(42, 38, 32, 0.2); box-shadow: none; }
+[data-universe='zen'] .holo__core { color: var(--text); filter: none; }
+[data-universe='zen'] .stardate__value { color: var(--text); }
+[data-universe='zen'] .toggle.is-on { background: rgba(42, 38, 32, 0.08); }
+[data-universe='zen'] .boot { background: radial-gradient(ellipse at center, rgba(250, 247, 240, 0.85), rgba(225, 218, 202, 0.97)); }
+[data-universe='zen'] .boot__ring { border-color: var(--text); border-width: 1px; box-shadow: none; }
+[data-universe='zen'] .boot__ring-inner { border-color: var(--alert); }
+[data-universe='zen'] .boot__ring-inner::after { background: var(--alert); filter: none; border-radius: 50%; clip-path: none; inset: 34px; animation: none; }
+[data-universe='zen'] .boot__title { color: var(--text); text-shadow: none; font-size: 46px; font-weight: 400; letter-spacing: 0.4em !important; }
+[data-universe='zen'] .boot__ship { color: var(--dim); }
+[data-universe='zen'] .boot__log { font-family: var(--font-display); color: var(--dim); text-align: center; white-space: normal; font-size: 16px; letter-spacing: 0.2em; }
+[data-universe='zen'] .boot__chev { display: none; }
+
+/* ======================================================================
+   ELDRITCH: things that are not quite the right shape
+   ====================================================================== */
+
+body[data-universe='eldritch'] {
+  --bg: #050807;
+  --panel: rgba(8, 12, 10, 0.8);
+  --panel-solid: rgba(8, 12, 10, 0.97);
+  --line: rgba(var(--primary-rgb), 0.2);
+  --line-strong: rgba(var(--primary-rgb), 0.45);
+  --text: #d8dccf;
+  --dim: rgba(216, 220, 207, 0.6);
+  --faint: rgba(216, 220, 207, 0.34);
+}
+[data-universe='eldritch'] .hud-panel,
+[data-universe='eldritch'] .composer,
+[data-universe='eldritch'] .modal {
+  clip-path: none; border-radius: 22px 8px 26px 12px / 10px 24px 8px 20px;
+  box-shadow: inset 0 0 40px rgba(var(--primary-rgb), 0.05);
+}
+[data-universe='eldritch'] .account, [data-universe='eldritch'] .nav-item--all { clip-path: none; border-radius: 16px 6px 18px 8px / 8px 16px 6px 14px; }
+[data-universe='eldritch'] .corner { display: none; }
+[data-universe='eldritch'] .hud-panel__label { font-size: 15px; letter-spacing: 0.1em; text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.4), 2px 1px 0 rgba(var(--secondary-rgb), 0.18); }
+[data-universe='eldritch'] .hud-panel__label > span:nth-child(2) { text-transform: none; }
+/* Every so often, something twitches */
+[data-universe='eldritch'] .hud-panel__label,
+[data-universe='eldritch'] .brand__name { animation: unease 11s infinite; }
+[data-universe='eldritch'] .reader-panel .hud-panel__label { animation-delay: 3.7s; }
+[data-universe='eldritch'] .list-panel .hud-panel__label { animation-delay: 7.1s; }
+@keyframes unease {
+  0%, 91%, 100% { transform: none; filter: none; }
+  92% { transform: skewX(-6deg) translateX(2px); filter: blur(0.6px); }
+  93.5% { transform: skewX(4deg) translateX(-1px); }
+  95% { transform: none; filter: none; }
+}
+body[data-universe='eldritch'][data-anim='off'] .hud-panel__label,
+body[data-universe='eldritch'][data-anim='off'] .brand__name { animation: none; }
+[data-universe='eldritch'] .brand__logo { border-radius: 50% 40% 55% 45%; }
+[data-universe='eldritch'] .brand__logo span { width: 14px; height: 7px; border-radius: 50%; clip-path: none; }
+[data-universe='eldritch'] .brand__name { text-transform: none; letter-spacing: 0.16em; }
+[data-universe='eldritch'] .btn, [data-universe='eldritch'] .search { clip-path: none; border-radius: 12px 4px 12px 4px; }
+[data-universe='eldritch'] .btn { text-transform: none; letter-spacing: 0.06em; font-size: 13px; }
+[data-universe='eldritch'] .btn--primary { background: rgba(var(--primary-rgb), 0.18); color: var(--text); border-color: var(--primary); box-shadow: 0 0 18px rgba(var(--primary-rgb), 0.25); }
+[data-universe='eldritch'] .tool, [data-universe='eldritch'] .nav-add, [data-universe='eldritch'] .nav-item--all, [data-universe='eldritch'] .composer__title, [data-universe='eldritch'] .drawer h3, [data-universe='eldritch'] .list__more, [data-universe='eldritch'] .reader__idle-title, [data-universe='eldritch'] .list__empty p { text-transform: none; letter-spacing: 0.08em; }
+[data-universe='eldritch'] .reader__subject { font-size: 24px; text-shadow: 0 0 16px rgba(var(--primary-rgb), 0.3), 2px 2px 0 rgba(var(--secondary-rgb), 0.12); }
+[data-universe='eldritch'] .reader__text { font-size: 16px; }
+[data-universe='eldritch'] .avatar { clip-path: none; border-radius: 50% 40% 55% 45% / 45% 55% 40% 50%; }
+[data-universe='eldritch'] .reader__frame { clip-path: none; border-radius: 14px 4px 14px 4px; }
+[data-universe='eldritch'] .badge { clip-path: none; border-radius: 999px; }
+[data-universe='eldritch'] .drawer { clip-path: none; }
+[data-universe='eldritch'] .boot__ring { border-radius: 50% 40% 55% 45% / 45% 55% 40% 50%; border-color: var(--primary); }
+[data-universe='eldritch'] .boot__title { font-size: 54px; letter-spacing: 0.3em !important; }
+[data-universe='eldritch'] .boot__log { font-family: var(--font-display); font-size: 17px; text-align: center; white-space: normal; color: var(--text); }
+[data-universe='eldritch'] .boot__chev { display: none; }
+
+/* ---- readability fixes found in screenshots ---- */
+
+/* Zen is light: the top bar and loose sidebar buttons need their own paper behind them */
+body[data-universe='zen'] { --panel: rgba(250, 247, 240, 0.88); }
+[data-universe='zen'] .topbar { background: rgba(250, 247, 240, 0.92); box-shadow: 0 1px 0 var(--line), 0 8px 24px rgba(0, 0, 0, 0.12); }
+[data-universe='zen'] .nav-item--all,
+[data-universe='zen'] .nav-item--all.is-active { background-color: var(--panel-solid); color: var(--text); }
+[data-universe='zen'] .nav-add { background: var(--panel-solid); color: var(--text); border-color: var(--line-strong); }
+
+/* High Seas: the display face is too ornate at small sizes */
+[data-universe='seas'] .tool { font-family: var(--font-body); font-size: 13px; }
+[data-universe='seas'] .nav-item--all { font-size: 18px; }
+[data-universe='seas'] .nav-add { font-size: 16px; }
