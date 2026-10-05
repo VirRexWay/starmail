@@ -1,6 +1,15 @@
 # StarMail
 
-A local, starship-themed desktop email client for multiple accounts (Gmail, Outlook, Proton, any IMAP server). Mail stays between your machine and your provider. There is no StarMail server.
+A local, themed desktop email client for multiple accounts (Gmail, Outlook, Proton, any IMAP server), with 13 switchable "universes" from starship bridge to pirate ship.
+
+> [!WARNING]
+> **Local client only, not yet third-party tested.**
+>
+> - StarMail runs entirely on your own computer. There is no StarMail server or cloud service: it talks directly to your mail provider, and your credentials are stored encrypted on your machine only.
+> - It has **not had an independent security audit**. The author has done their own security testing (see [Security](#security)), but that is no substitute for an outside review.
+> - Releases are **not code-signed**, so Windows will show an "unknown publisher" warning.
+>
+> Use it with that in mind, and at your own risk.
 
 ## Run
 
@@ -77,4 +86,16 @@ src/shared/     types shared across processes
 src/renderer/   React UI (zustand store, framer-motion, canvas starfield, WebAudio fx)
 ```
 
-HTML email renders in a sandboxed iframe with no scripts and a strict CSP. Links open in your default browser.
+## Security
+
+What StarMail does to protect you. All of this was tested by the author against hostile servers and malicious emails; none of it has been independently audited.
+
+- **Credentials:** passwords and tokens are encrypted with the OS keychain (Windows DPAPI). If encryption isn't available, StarMail refuses to save them rather than storing them in plain text. Unlinking a Google account revokes its tokens.
+- **Connections:** IMAP and SMTP always use TLS. If a server (or anyone in between) doesn't offer encryption, StarMail refuses to send your password. Certificate checks can only be relaxed for a server on your own machine (Proton Mail Bridge).
+- **Email content:** HTML email is shown in a sandboxed frame with no scripts and a strict content policy. Remote images are blocked until you allow them, so tracking pixels don't fire. Clicking a link shows its real destination before opening it.
+- **Attachments:** saved under a cleaned-up file name (no hidden paths), with a warning for program files, and marked as downloaded from the internet so Windows treats them with caution.
+- **App hardening:** only the app's own page can talk to the core, every request is validated, and packaged builds disable Electron's debugging back doors.
+
+**Known limits:** any program running as your Windows user can decrypt stored credentials (true of most desktop mail clients), and builds are not code-signed.
+
+Found a problem? Please open an issue.
